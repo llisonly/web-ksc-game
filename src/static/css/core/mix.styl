@@ -1,0 +1,28 @@
+@import 'var'
+
+//vendor
+vendor(prop, arguments)
+	-webkit-{prop} arguments
+	-moz-{prop} arguments
+	-o-{prop} arguments
+	{prop} arguments
+	
+//border-radius
+border-radius()
+	vendor('border-radius', arguments)	
+
+//border-radius
+box-shadow()
+	vendor('box-shadow', arguments)
+	
+//opacity
+opacity(value)
+	opacity value	
+	if $support-for-ie	
+		filter 'progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(value * 100) + ')'
+			
+//text-overflow
+text-overflow()
+	overflow hidden
+	text-overflow ellipsis
+	white-space nowrap

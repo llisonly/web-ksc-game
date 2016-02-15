@@ -1,0 +1,24 @@
+@import 'var'
+@import 'mix'
+
+html
+	font-size 100%
+	overflow-x hidden
+	overflow-y auto
+
+body
+	background $body-bg
+	line-height $line-height
+	font-family $font-family
+	font-size $font-size
+	color $text-color
+	
+a
+	color $link-color	
+		&:hover
+			color $link-hover-color
+			text-decoration $link-hover-decoration
+		
+.container
+	margin 0 auto
+	width $container-width

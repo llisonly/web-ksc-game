@@ -1,0 +1,92 @@
+@import 'mix'
+
+//position
+.pr
+	position relative
+.pa
+	position absolute
+	
+//float	
+.l
+	float left
+.r
+	float right
+
+//display	
+.dn
+	display none
+.di
+	display inline
+.db
+	display block
+.dib
+	display inline-block
+	
+//margin
+for num in -20 -15 -10 -5 5 10 15 20 25 30 35 40
+	.ml{num}
+		margin-left num px
+	.mr{num}
+		margin-right num px
+	.mt{num}
+		margin-top num px
+	.mb{num}
+		margin-bottom num px
+
+//padding
+for num in 5 10 15 20 25 30 35 40
+	.pl{num}
+		padding-left num px
+	.pr{num}
+		padding-right num px
+	.pt{num}
+		padding-top num px
+	.pb{num}
+		padding-bottom num px
+
+//background
+.bgf
+	background-color #fff
+.bgfb
+	background-color #fbfbfb
+.bgf5
+	background-color #f5f5f5
+	
+//border
+.bdc
+	border 1px solid #ccc
+.nbd
+	border none
+
+//text-align
+.tc
+	text-align center
+.tl	
+	text-align left
+.tr
+	text-align right
+.tj
+	text-align justify
+	
+//font-size
+for num in 12 14 16 18 20
+	.f{num}
+		font-size num px
+	
+//auto
+.auto
+	margin-left auto
+	margin-right auto
+	
+//text-indent
+.ti0
+	text-indent 0
+	
+.ti2
+	text-indent 2em
+	
+//text-decoration
+.tdl
+	text-decoration underline
+.tdn 
+	text-decoration none

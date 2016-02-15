@@ -1,0 +1,31 @@
+{
+  "name": "ksc-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bluebird": "^3.2.1",
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.0",
+    "gulp-connect-php": "0.0.7",
+    "gulp-document-write": "*",
+    "gulp-imerge": "0.0.4",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-nocache": "*",
+    "gulp-stylus": "^2.3.0",
+    "gulp-tap": "git://github.com/Javey/gulp-tap.git#master",
+    "gulp-uglify": "^1.5.1",
+    "http-proxy": "^1.13.0",
+    "lodash": "^4.2.0",
+    "nobone": "^1.7.0",
+    "path": "^0.12.7",
+    "rimraf": "^2.5.1",
+    "uglify": "^0.1.5",
+    "stylus": "0.43.0"
+  }
+}
