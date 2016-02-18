@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     _ = require('lodash'),
     path = require('path'),
     uglify = require('gulp-uglify'),
-    minifyCss = require('gulp-minify-css'),
+    cssnano = require('gulp-cssnano'),
     connect = require('gulp-connect-php'),  
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
@@ -20,14 +20,14 @@ var gulp = require('gulp'),
     nobone = require('nobone'),
     nocache = require('gulp-nocache');
 
-var staticPath = './src/static',
+var staticPath = './src/site-feCode',
     paths = {
         css: staticPath + '/css/**/*.@(css|styl)',
         js: staticPath + '/js/**/*.@(js|jst)',
         image: staticPath + '/image/**/*',
         sprite: staticPath + '/image/sprite/**/*.png',
-        tpl: './src/view/**/*.html',
-        staticDest: './dist/static',
+        tpl: './src/view/**/*.php',
+        staticDest: './dist/site-feCode',
         tplDest: './dist'
     },
     nocacheConf = {
@@ -35,7 +35,7 @@ var staticPath = './src/static',
         outputContext: './dist'
     };
 
-process.env.NODE_ENV = 'development';    
+process.env.NODE_ENV = 'development';
 
 gulp.task('clean', function(){
     return Promise.all([
@@ -72,12 +72,12 @@ gulp.task('build:css', ['build:media'], function(){
                 padding: 5
             }
         }))
-        .pipe(minifyCss({compatibility: 'ie7'}))
         .pipe(tap(nocacheSprite))
         .pipe(nocache(_.extend({
             type: 'css',
             dest: 'dist' + (process.env.NODE_ENV == 'development' ? '/[path][name].[hash:6].[ext]' : '/[path][name].[hash:8].[ext]')
         }, nocacheConf)))
+        .pipe(cssnano())
         .pipe(gulp.dest(function(file){return file.base;}))
 });
 
@@ -157,6 +157,12 @@ gulp.task('build:tpl', ['build:css', 'build:js', 'build:requirejs'], function(){
 });
 
 gulp.task('build', ['build:media', 'build:css', 'build:js', 'build:tpl']);
+
+gulp.task('release', function() {  
+    // 加上cdn
+    nocacheConf.cdn = _.map(_.range(1, 10), function(i) { return 'http://static.game.ksyun.com'; });
+    gulp.start('build');
+});
 
 var port = 8000,
     phpPort = 8001;
