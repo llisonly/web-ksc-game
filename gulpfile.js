@@ -10,11 +10,7 @@ var gulp = require('gulp'),
     _ = require('lodash'),
     path = require('path'),
     uglify = require('gulp-uglify'),
-    cssnano = require('gulp-cssnano'),
-    connect = require('gulp-connect-php'),  
-    browserSync = require('browser-sync'),
-    reload = browserSync.reload,
-    httpProxy = require('http-proxy'),
+    cssnano = require('gulp-cssnano'),    
     documentWrite = require('gulp-document-write'),
     tap = require('gulp-tap'),
     nobone = require('nobone'),
@@ -200,34 +196,6 @@ gulp.task('server', function(){
     // nb.service.use(function(req, res) {
     //     nb.proxy.url(req, res, 'http://127.0.0.1:' + phpPort + req.originalUrl);
     // });
-});
-
-gulp.task('php-server', function(){
-    var proxy = httpProxy.createProxyServer({});
-
-    var staticDir = process.env.NODE_ENV == 'development' ? 'src' : 'dist';
-
-    connect.server({
-        port: port,
-        base: staticDir
-    });
-
-    browserSync({
-        notify: false,        
-        port: phpPort,        
-        server: {
-            baseDir: [staticDir],
-            middleware: function(req, res, next){
-                var url = req.url;
-
-                if(url.match(/^\/(css|fonts)\//)){                   
-                    proxy.web(req, res, {target: 'http://127.0.0.1:' + port});
-                }else{                   
-                    next();
-                }
-            }
-        }
-    });   
 });
 
 gulp.task('default', ['server'], function(){});
